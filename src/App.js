@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import {Component} from "react";
+import EditTexto from "./EditTexto";
+import LabelTexto from "./labelTexto";
+import Login from "./Login";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      texto: ""
+    }
+
+    this.getTexto = this.getTexto.bind(this);
+  }
+
+  getTexto(e) {
+    this.setState({texto: e});
+  }
+
+  render() {
+    return (
+        <div>
+          <EditTexto getTexto={this.getTexto}/>
+          <br/><br/>
+          <LabelTexto texto={"Você digitou " + this.state.texto.length + " caracteres."}/>
+          <br/><br/><br/><br/>
+          <Login/>
+        </div>
+    );
+  }
 }
 
 export default App;
